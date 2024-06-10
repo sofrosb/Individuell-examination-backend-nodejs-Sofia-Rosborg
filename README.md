@@ -35,7 +35,7 @@ http://localhost:8000/api/
 
 ### Menu:
 
-Access the Airbean menu. No additional steps or parameters needed.
+Access the Airbean menu. No additional steps or parameters needed. <br>
 http://localhost:8000/api/company/menu
 Method: GET
 
@@ -47,15 +47,15 @@ Method: GET
 
 ### Create order:
 
-Initiating an order.
+Initiating an order. <br>
 http://localhost:8000/api/order/createOrder  
 Method: POST
 
 Add query parameters `Key: userId` and `Value: {userId}` when creating the order as a registered user.
 
-Go to the "Body" tab (in Postman or Insomnia).
-Select "JSON" as the format.
-Paste your JSON structure into the json field.
+- Go to the "Body" tab (in Postman or Insomnia).
+- Select "JSON" as the format.
+- Paste your JSON structure into the json field.
 
 Example of JSON structure for creating several orders:
 
@@ -86,19 +86,19 @@ Method: POST
 
 ### Get cart:
 
-Retrieve the current items in the cart. Note that the orderId received when creating an order is necessary to see the cart contents.
+Retrieve the current items in the cart. Note that the orderId received when creating an order is necessary to see the cart contents. <br>
 http://localhost:8000/api/order/getCart/:orderId <br>
 Method: GET
 
 ### Add item cart:
 
-Replacing and/or adding an item/items to the cart. Similar to the 'getCart' operation, append your orderId at the end of the URL.
+Replacing and/or adding an item/items to the cart. Similar to the 'getCart' operation, append your orderId at the end of the URL. <br>
 http://localhost:8000/api/order/addItemCart/:orderId  
 Method: PUT
 
-Go to the "Body" tab (in Postman or Insomnia).
-Select "JSON" as the format.
-Paste your JSON structure into the json field.
+- Go to the "Body" tab (in Postman or Insomnia).
+- Select "JSON" as the format.
+- Paste your JSON structure into the json field.
 
 It's crucial to choose items listed in the 'menu.js' file to avoid errors.
 
@@ -123,28 +123,28 @@ Example of JSON structure for adding several items to cart:
 
 ### Delete item:
 
-Remove an item from the order by selecting their specific ID. The orderId is required to specify the order from which to delete an item.
+Remove an item from the order by selecting their specific ID. The orderId is required to specify the order from which to delete an item. <br>
 http://localhost:8000/api/order/deleteItem/:orderId?itemId=<ProductId>  
 Method: DELETE
 
-Go to the "Parameters" tab (in Postman or Insomnia).
-Add query parameters `Key: itemId` and `Value: {itemId}` when deleting an item from the order.
+- Go to the "Parameters" tab (in Postman or Insomnia).
+- Add query parameters `Key: itemId` and `Value: {itemId}` when deleting an item from the order.
 
 ### Order confirmation:
 
-Confirm an order after it has been sent. Must be done after sending the order. Append your orderId at the end of the URL.
-http://localhost:8000/api/order/orderConfirmation/:orderId
+Confirm an order after it has been sent. Must be done after sending the order. Append your orderId at the end of the URL. <br>
+http://localhost:8000/api/order/orderConfirmation/:orderId <br>
 Method: GET
 
 ### Create user:
 
-Register a new user. It is then added to the database `users.db`. The userId obtained during registration is essential for creating orders as a user and accessing your order history.
+Register a new user. It is then added to the database `users.db`. The userId obtained during registration is essential for creating orders as a user and accessing your order history. <br>
 http://localhost:8000/api/users/signup  
 Method: POST
 
-Go to the "Body" tab (in Postman or Insomnia).
-Select "JSON" as the format.
-Paste your JSON structure into the json field.
+- Go to the "Body" tab (in Postman or Insomnia).
+- Select "JSON" as the format.
+- Paste your JSON structure into the json field.
 
 Example of JSON structure for creating users:
 
@@ -171,13 +171,13 @@ Will give the user this response:
 
 ### Login user:
 
-Log in an existing user.
+Log in an existing user. <br>
 http://localhost:8000/api/users/login  
 Method: POST
 
-Go to the "Body" tab (in Postman or Insomnia).
-Select "JSON" as the format.
-Paste your JSON structure into the json field.
+- Go to the "Body" tab (in Postman or Insomnia).
+- Select "JSON" as the format.
+- Paste your JSON structure into the json field.
 
 Example of JSON structure for logging in users:
 
@@ -200,7 +200,7 @@ Will give the user this response:
 
 ### Logout user:
 
-Log out the current user.
+Log out the current user. <br>
 http://localhost:8000/api/users/logout  
 Method: POST
 
@@ -236,13 +236,13 @@ Will give the user this response:
 
 ### Login admin:
 
-Log in an admin.
-http://localhost:8000/api/admin/login
+Log in an admin. <br>
+http://localhost:8000/api/admin/login <br>
 Method: POST
 
-Go to the "Body" tab (in Postman or Insomnia).
-Select "JSON" as the format.
-Paste your JSON structure into the json field.
+- Go to the "Body" tab (in Postman or Insomnia).
+- Select "JSON" as the format.
+- Paste your JSON structure into the json field.
 
 Example of JSON structure for logging in users:
 
@@ -263,13 +263,13 @@ Will give the user this response:
 
 ### Add item to menu:
 
-Admin route to add items to menu. The fields id, title, desc, and price are required to add an item.
-http://localhost:8000/api/admin/addItem
+Admin route to add items to menu. The fields id, title, desc, and price are required to add an item. <br>
+http://localhost:8000/api/admin/addItem <br>
 Method: POST
 
-Go to the "Body" tab (in Postman or Insomnia).
-Select "JSON" as the format.
-Paste your JSON structure into the json field.
+- Go to the "Body" tab (in Postman or Insomnia).
+- Select "JSON" as the format.
+- Paste your JSON structure into the json field.
 
 Example of JSON structure for adding menu items:
 
@@ -316,7 +316,7 @@ Will give the user this response:
 
 Admin route to update an item in the menu by specifying its ID. Append the itemId to the end of the URL. At least one of title, description, or price must be provided.
 
-http://localhost:8000/api/admin/updateItem/:itemId
+http://localhost:8000/api/admin/updateItem/:itemId <br>
 Method: PUT
 
 Example of JSON structure for updating menu items:
@@ -348,10 +348,11 @@ Will give the user this response:
 
 ### Delete item in menu:
 
-Admin route to delete an item from the menu by specifying its ID. Append the `itemId` to the end of the URL.
-http://localhost:8000/api/admin/deleteItem/:itemId
+Admin route to delete an item from the menu by specifying its ID. Append the `itemId` to the end of the URL. <br>
+http://localhost:8000/api/admin/deleteItem/:itemId <br>
 Method: DELETE
 
 Alternative approach:
-Go to the "Parameters" tab (in Postman or Insomnia).
-Add query parameters `Key: itemId` and `Value: {itemId}` when deleting an item from the order.
+
+- Go to the "Parameters" tab (in Postman or Insomnia).
+- Add query parameters `Key: itemId` and `Value: {itemId}` when deleting an item from the order.
