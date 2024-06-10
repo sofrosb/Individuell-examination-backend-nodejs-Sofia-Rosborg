@@ -1,0 +1,6 @@
+{"title":"Campaign for Products 1, 3, 7","productIDs":[1,3,7],"price":114.30000000000001,"_id":"5RdyDt8IIqqGuIOP"}
+{"title":"Campaign for Products 3, 7","productIDs":[3,7],"price":79.2,"_id":"CRBkhkBHWOrC3z2e"}
+{"title":"Campaign for Products 3, 7","productIDs":[3,7],"price":79.2,"_id":"K0vyQbnikr7PXZ5J"}
+{"title":"Campaign for Products 3, 7","productIDs":[3,7],"price":44.1,"_id":"PLI6tjyMtnJRs3J2"}
+{"title":"Campaign for Products 3, 7","productIDs":[3,7],"price":79.2,"_id":"ToejrrIfsYz6x9Ev"}
+{"title":"Campaign for Products 3, 7","products":[{"_id":3,"title":"Cappuccino","desc":"Bryggd på månadens bönor.","price":44.1},{"_id":7,"title":"Sockerkaka","desc":"Hembakad klassiker.","price":35.1,"createdAt":"2024-06-09 19:55:38"}],"_id":"zJqmHjXZfRiCbeiW"}
