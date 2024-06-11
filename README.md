@@ -1,6 +1,6 @@
 # Airbean - Individuell uppgift, fortsättning Aribean API
 
-### Created by Sofia
+### Created by Sofia Rosborg
 
 ### The description of the task:
 
@@ -36,7 +36,7 @@ http://localhost:8000/api/
 ### Menu:
 
 Access the Airbean menu. No additional steps or parameters needed. <br>
-http://localhost:8000/api/company/menu
+http://localhost:8000/api/company/menu <br>
 Method: GET
 
 ### Company info:
@@ -132,9 +132,17 @@ Method: DELETE
 
 ### Order confirmation:
 
-Confirm an order after it has been sent. Must be done after sending the order. Append your orderId at the end of the URL. <br>
+Confirm an order after it has been sent. The endpoint provides the user with an estimated delivery time. Must be done after sending the order. Append your orderId at the end of the URL. <br>
 http://localhost:8000/api/order/orderConfirmation/:orderId <br>
 Method: GET
+
+Will give the user this response:
+
+```json
+{
+  "message": "Your estimated delivery time is 12:11."
+}
+```
 
 ### Create user:
 
@@ -236,7 +244,7 @@ Will give the user this response:
 
 ### Login admin:
 
-Log in an admin. <br>
+All admin endpoints are restricted by an admin login. Log in an admin. <br>
 http://localhost:8000/api/admin/login <br>
 Method: POST
 
@@ -356,3 +364,41 @@ Alternative approach:
 
 - Go to the "Parameters" tab (in Postman or Insomnia).
 - Add query parameters `Key: itemId` and `Value: {itemId}` when deleting an item from the order.
+
+### Campaigns:
+
+Admin route to add campaigns to the menu. The admin needs to send the product IDs of the items included in the campaign. The total price is then calculated automatically, and the customer will receive a 10% discount.
+
+http://localhost:8000/api/admin/campaigns
+
+Method: POST
+
+Example of JSON structure for adding campaign:
+
+```json
+{
+  "productIDs": [3, 7]
+}
+```
+
+Will give the user this response:
+
+```json
+{
+  "message": "This campaign has been added.",
+  "campaign": {
+    "title": "Campaign for Cappuccino and Sockerkaka",
+    "totalPrice": 79.2,
+    "products": [
+      {
+        "_id": 3,
+        "price": 49
+      },
+      {
+        "_id": 7,
+        "price": 39
+      }
+    ]
+  }
+}
+```

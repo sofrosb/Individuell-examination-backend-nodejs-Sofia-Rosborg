@@ -9,13 +9,15 @@ const addAdmins = async () => {
       // Add admins to database
       const insertedAdmin = await db["admin"].insert(admin);
     }
-  } catch (error) {}
+  } catch (error) {
+    return res.status(500).json({ message: "Error adding admins." });
+  }
 };
 
 // Call addAdmins when the server starts
 addAdmins();
 
-// Login controller
+// Controller for admin login
 const loginAdmin = async (req, res) => {
   // Get username and password from request body
   const { username, password } = req.body;
@@ -52,7 +54,7 @@ const loginAdmin = async (req, res) => {
   }
 };
 
-// Add item to menu
+// Controller to add an item to the menu
 const addMenuItem = async (req, res) => {
   try {
     const item = req.body;
@@ -75,6 +77,7 @@ const addMenuItem = async (req, res) => {
       }),
     };
 
+    // Insert the new item into the menu collection
     const addedItem = await db.menu.insert(newItem);
     res.status(201).json({
       message: "Item added to menu.",
@@ -94,7 +97,7 @@ const addMenuItem = async (req, res) => {
   }
 };
 
-// Modify item in menu
+// Controller to update an item in the menu
 const updateMenuItem = async (req, res) => {
   try {
     // itemId is passed as a URL parameter
@@ -110,7 +113,7 @@ const updateMenuItem = async (req, res) => {
       });
     }
 
-    // Convert itemId to number if necessary (assuming _id is a number)
+    // Convert itemId to number if necessary
     const parsedItemId = parseInt(itemId, 10);
 
     // Check if item exists in menu
@@ -149,16 +152,26 @@ const updateMenuItem = async (req, res) => {
     // Set modifiedAt to current date
     updates.modifiedAt = currentDateTime;
 
+    // Prepare the update operation
+    const updateOperation = {
+      $set: updates,
+      // Remove the createdAt field
+      $unset: { createdAt: "" },
+    };
+
     // Update item in menu
     const updateResult = await db.menu.updateOne(
       { _id: parsedItemId },
-      {
-        $set: updates,
-      }
+      updateOperation
     );
 
     // Fetch the updated data from the database
     const updatedItemData = await db.menu.findOne({ _id: parsedItemId });
+
+    // Remove createdAt field from the response object
+    if (updatedItemData) {
+      delete updatedItemData.createdAt;
+    }
 
     // Compare the updated item with the existing item to confirm the change
     const changesMade = Object.keys(updates).some(
@@ -188,15 +201,18 @@ const updateMenuItem = async (req, res) => {
   }
 };
 
-// Remove item from menu
+// Controller to remove an item from the menu
 const deleteMenuItem = async (req, res) => {
   try {
+    // itemId is passed as a URL parameter
     const { itemId } = req.params;
+    // Parse the 'itemId' value to ensure it is an integer
     const parsedItemId = parseInt(itemId, 10);
 
+    // Remove the item from menu
     const deletionResult = await db.menu.remove({ _id: parsedItemId });
 
-    // Check if item was removed
+    // Check if item was removed successfully
     if (deletionResult === 1) {
       res
         .status(200)

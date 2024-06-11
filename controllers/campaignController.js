@@ -24,29 +24,49 @@ const addCampaign = (req, res) => {
         });
       }
 
+      // Extract names of the products
+      const productNames = products.map((product) => product.title);
+
+      // Check if product names were retrieved
+      if (productNames.length === 0) {
+        return res.status(400).json({
+          error: "Could not retrieve product names.",
+        });
+      }
+
+      // Generate title based on product names
+      const title = `Campaign for ${productNames.join(" and ")}`;
+
       // Calculate total discounted price for the campaign
       const totalDiscountedPrice = products.reduce((total, product) => {
         // Calculate price with 10% discount for each product and add it to the total
         return total + product.price * 0.9;
       }, 0);
 
-      // Generate an automatic title based on product IDs
-      const title = `Campaign for Products ${productIDs.join(", ")}`;
+      // Format the total discounted price to two decimal places
+      const formattedTotalDiscountedPrice = parseFloat(
+        totalDiscountedPrice.toFixed(2)
+      );
 
       // Use the calculated total price for the campaign
-      const price = totalDiscountedPrice;
+      const totalPrice = formattedTotalDiscountedPrice;
 
       // Create and save the campaign in the database
-      const campaign = { title, productIDs, price };
+      const campaign = { title, productIDs, totalPrice };
       db.campaigns
         .insert(campaign)
         .then(() => {
+          // Send the response
           res.status(201).json({
             message: "This campaign has been added.",
             campaign: {
               title: campaign.title,
-              products: products,
-              price: campaign.price,
+              totalPrice: campaign.totalPrice,
+              products: products.map((product) => ({
+                _id: product._id,
+                name: product.name,
+                price: product.price,
+              })),
             },
           });
         })

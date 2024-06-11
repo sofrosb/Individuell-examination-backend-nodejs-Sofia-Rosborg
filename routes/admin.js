@@ -10,19 +10,19 @@ import { addCampaign } from "../controllers/campaignController.js";
 
 const router = Router();
 
-// Middleware to be used in routes to check if user is an admin
+// Admin login route
 router.post("/login", loginAdmin);
 
-// Add item to menu
+// Route to add a new item to the menu (requires admin authentication)
 router.post("/addItem", adminAuthenticate, addMenuItem);
 
-// Modify item in menu
+// Route to update an existing item in the menu (requires admin authentication)
 router.put("/updateItem/:itemId", adminAuthenticate, updateMenuItem);
 
-// Remove item from menu
+// Route to delete an item from the menu (requires admin authentication)
 router.delete("/deleteItem/:itemId", adminAuthenticate, deleteMenuItem);
 
-// Add campaigns
+// Route to add a new campaign (requires admin authentication)
 router.post("/campaigns", adminAuthenticate, addCampaign);
 
 export default router;
