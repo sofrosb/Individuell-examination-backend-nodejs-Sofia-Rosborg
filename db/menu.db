@@ -1,0 +1,9 @@
+{"_id":1,"title":"Bryggkaffe","desc":"Bryggd på månadens bönor.","price":39}
+{"_id":2,"title":"Caffè Doppio","desc":"Bryggd på månadens bönor.","price":49,"createdAt":"2024-06-09 20:01:53"}
+{"_id":3,"title":"Cappuccino","desc":"Bryggd på månadens bönor.","price":49}
+{"_id":4,"title":"Latte Macchiato","desc":"Bryggd på månadens bönor.","price":49}
+{"_id":5,"title":"Kaffe Latte","desc":"Bryggd på månadens bönor.","price":54}
+{"_id":6,"title":"Cortado","desc":"Bryggd på månadens bönor.","price":39}
+{"_id":7,"title":"Sockerkaka","desc":"Hembakad klassiker.","price":39,"createdAt":"2024-06-09 19:55:38"}
+{"_id":8,"title":"Prinsesstårta","desc":"Gul marsipan.","price":49,"createdAt":"2024-06-11 08:59:48"}
+{"_id":9,"title":"Chokladboll","desc":"Med brynt smör.","price":19,"createdAt":"2024-06-11 08:57:19"}
